@@ -1,0 +1,143 @@
+
+  
+  .toast {
+    max-width: 400px; 
+    background-color: white; 
+    border: 1px solid #e5e7eb; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    display: flex; 
+    padding: 16px; 
+    align-items: center; 
+    transition: all 0.3s ease; 
+    position: absolute; 
+    z-index: 1000; 
+    animation: slide-in 0.3s forwards, fade-out 0.3s forwards 2.5s; 
+  }
+  
+  .toast.dark {
+    background-color: #1f2937; 
+    border-color: #374151; 
+  }
+  
+  .icon {
+    flex-shrink: 0; 
+    margin-right: 12px; 
+    font-size: 20px; 
+    color: inherit; 
+  }
+  
+
+.success .icon {
+    color: #4caf50; 
+  }
+  
+  .error .icon {
+    color: #f44336; 
+  }
+  
+  .info .icon {
+    color: #2196F3; 
+  }
+  
+  .warning .icon {
+    color: #ff9800; 
+  }
+  
+  .custom .icon {
+    color: #9c27b0; 
+  }
+  
+
+  .critical .icon {
+    color: #d32f2f; 
+  }
+  
+  .alert .icon {
+    color: #ffeb3b; 
+  }
+  
+  .debug .icon {
+    color: #607d8b; 
+  }
+  
+  
+  .message {
+    flex-grow: 1; 
+  }
+  
+  .message p {
+    margin: 0; 
+    font-size: 14px; 
+    color: #374151; 
+    line-height: 1.5; 
+  }
+  
+  .toast.dark .message p {
+    color: #d1d5db; 
+  }
+  
+  .close-button {
+    background: none; 
+    border: none; 
+    color: #374151; 
+    font-size: 18px; 
+    cursor: pointer; 
+  }
+  
+  /* Keyframes for animations */
+  @keyframes slide-in {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fade-out {
+    to {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+  }
+  
+  .top-left {
+    top: 20px;
+    left: 20px;
+  }
+  
+  .top-right {
+    top: 20px;
+    right: 20px;
+  }
+  
+  .bottom-left {
+    bottom: 20px;
+    left: 20px;
+  }
+  
+  .bottom-right {
+    bottom: 20px;
+    right: 20px;
+  }
+  
+
+  @media (max-width: 600px) {
+    .toast {
+      flex-direction: row; 
+      align-items: center; 
+      justify-content: space-between; 
+    }
+  
+    .toast-icon {
+      margin-right: 10px; 
+    }
+  
+    .toast-content {
+      flex-grow: 1; 
+    }
+  }
+  

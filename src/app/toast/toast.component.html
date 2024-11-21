@@ -1,0 +1,15 @@
+@if (toasts) { @for (toast of toasts; track $index) {
+<div
+  class="toast"
+  [ngClass]="[toast.type, getPositionClass(toast.position)]"
+  role="alert"
+>
+  <div class="icon">
+    <i [ngClass]="toast.icon"></i>
+  </div>
+  <div class="message">
+    <p>{{ toast.message }}</p>
+  </div>
+  <button class="close-button" (click)="remove(toast)">&times;</button>
+</div>
+} }
