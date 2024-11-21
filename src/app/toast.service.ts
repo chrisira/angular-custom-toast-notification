@@ -3,15 +3,23 @@ import { BehaviorSubject } from 'rxjs';
 
 export interface Toast {
   message: string;
-  title?: string;  // Optional title
-  type: 'success' | 'error' | 'info' | 'warning' | 'custom' | 'critical' | 'alert' | 'debug';
-  duration?: number; // duration in milliseconds
-  icon?: string; // Optional icon
-  position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'; // New position property
+  title?: string;
+  type:
+    | 'success'
+    | 'error'
+    | 'info'
+    | 'warning'
+    | 'custom'
+    | 'critical'
+    | 'alert'
+    | 'debug';
+  duration?: number;
+  icon?: string;
+  position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ToastService {
   private toasts: Toast[] = [];
@@ -20,10 +28,34 @@ export class ToastService {
   getToasts() {
     return this.toastSubject.asObservable();
   }
-  show(message: string, type: 'success' | 'error' | 'info' | 'warning' | 'custom' | 'critical' | 'alert' | 'debug', title?: string, duration: number = 3000, icon?: string, preventDuplicates: boolean = true, position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' = 'top-right') {
-    // Prevent duplicates
-    if (preventDuplicates && this.toasts.some(toast => toast.message === message && toast.type === type)) {
-      return; // If duplicate found, exit the function
+  show(
+    message: string,
+    type:
+      | 'success'
+      | 'error'
+      | 'info'
+      | 'warning'
+      | 'custom'
+      | 'critical'
+      | 'alert'
+      | 'debug',
+    title?: string,
+    duration: number = 3000,
+    icon?: string,
+    preventDuplicates: boolean = true,
+    position:
+      | 'top-left'
+      | 'top-right'
+      | 'bottom-left'
+      | 'bottom-right' = 'top-right'
+  ) {
+    if (
+      preventDuplicates &&
+      this.toasts.some(
+        (toast) => toast.message === message && toast.type === type
+      )
+    ) {
+      return;
     }
 
     const toast: Toast = { message, title, type, duration, icon, position };
@@ -36,12 +68,8 @@ export class ToastService {
   }
 
   remove(toast: Toast) {
-    this.toasts = this.toasts.filter(t => t !== toast);
+    this.toasts = this.toasts.filter((t) => t !== toast);
     this.toastSubject.next(this.toasts);
   }
-
-
-  
-
-  constructor() { }
+  constructor() {}
 }
